@@ -9,8 +9,8 @@ EspalexaDevice* epsilon;
 //new callback type, contains device pointer
 void motionChanged(EspalexaDevice* dev);
 
-String alexaSkill = "Tmotion2";
-String email_content1 = "S2:動体検知 ";
+String alexaSkill = "Tmotion1";
+String email_content1 = "S1:動体検知 ";
 
 const char* wifi_ssid = "input your wifi ssid";
 const char* wifi_pass = "input your wifi pass";
@@ -98,8 +98,8 @@ void setup() {
   // put your setup code here,  M  log_iion(3);
   M5.Lcd.fillScreen(BLACK);
   M5.Lcd.setRotation(3);
-  M5.Lcd.println("PIR TEST");
-  Serial.println("PIR TEST");
+  M5.Lcd.println(alexaSkill);
+  Serial.println(alexaSkill);
   pinMode(36,INPUT_PULLUP);
   pinMode(BTN_A_PIN, INPUT_PULLUP);
   pinMode(BTN_B_PIN, INPUT_PULLUP);
@@ -116,7 +116,8 @@ void setup() {
 void send_mail_wrap(){
   int now_hour = Tokyo.hour();
   M5.Lcd.setCursor(0, 0, 1);
-  M5.Lcd.println("now hour = "+ String(now_hour) + "    ");
+  M5.Lcd.println(alexaSkill + "  now hour = "+ String(now_hour) + "    ");
+  //M5.Lcd.println("now hour = "+ String(now_hour) + "    ");
   
   // 経過時間を計算しそれが一定以上、かつ温度が閾値を超えていたらメール送信
   auto elapsed_seconds = difftime(Tokyo.now(), last_emailed_at);
